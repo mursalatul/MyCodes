@@ -1,0 +1,11 @@
+algorithm of gcd function
+
+step 1: take n and m as input.(we are considering 2 number now and m > n)
+step 2: if m % n == 0 go to step 4.
+step 3: replace max number between m and n with (max_number_between_m_y % min_number_between_m_y). check if min number can
+	be dividable with max number return min number and go to step 4. else repeat step 3.
+step 4: min number is the gcd.
+
+algorithm of lcd function,
+ n X m = gcd X lcd.
+so find gcd then find lcd from it

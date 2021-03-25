@@ -1,0 +1,12 @@
+/*find multipliers of a number
+
+Algorithm:
+
+Step 1: take input as n.
+Step 2: i = 1, j = (int) n^0.5, s = {}.
+Step 3: if n%i == 0 and i <= j goto Step 4. Or, goto Step 5.
+Step 4: if i != n/i, add i and n/i in s and goto Step 3. Else add only i in s
+        and goto Step 3.
+Step 5: If length of s > 0 print s.
+
+*/
