@@ -41,7 +41,7 @@ vector<bool> sieve_of_eratosthenes_odd_only(int n)
 	for (int p = 3; p * p <= n; p += 2)
 	{
 		if (v[p] == true)
-			for (int i = p * p; i <= p; i += p)
+			for (int i = p * p; i <= n; i += p)
 				v[i] = false;
 	}
 	return v;
