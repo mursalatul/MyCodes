@@ -3,6 +3,14 @@
 #include <cmath>
 using namespace std;
 
+/*
+NOTE:
+  Time Complexity:
+  sieve_of_eratosthenes > sieve_of_eratosthenes_odd_only > segmented_sieve
+  Memory:
+  sieve_of_eratosthenes = sieve_of_eratosthenes_odd_only > segmented_sieve
+*/
+
 vector<bool> sieve_of_eratosthenes(int n)
 {
 	vector<bool> v(n + 1, true);
