@@ -6,8 +6,9 @@ using namespace std;
 // the equation
 double f(double x)
 {
-    return (x * x) - 3;
+   // return (x * x) - 3;
     // return (2 * (x * x * x)) - (2 * x) - 5;
+	return (x*x*x) - x - 1;
 }
 
 void getPoint(double &a, double &b)
@@ -25,6 +26,15 @@ void show(double &a, double &b, double &c)
 {
     // a, f(a), b, f(b), c, f(c), update
     printf("%10lf %10lf %10lf %10lf %10lf %10lf\t", a, f(a), b, f(b), c, f(c));
+}
+
+// checkif the first 6 digits after decimal point is zero or not of f(c).
+// f(c) must be positive
+bool first6digit0(double fc)
+{
+    if (fc < 0)
+        return false;
+    return fc <= 1e-6;
 }
 
 int main()
@@ -54,7 +64,7 @@ int main()
     // if given
     else
     {
-
+        bool exect_root_found = false;
         // if term given
         printf("No\t  a          f(a)       b          f(b)       c          f(c)           Update\n");
         if (maximum_term != -1)
@@ -64,19 +74,22 @@ int main()
                 c = (a + b) / 2;
                 cout << i << '\t';
                 show(a, b, c);
-                if (f(c) < 0)
+                double fc = f(c);
+                if (first6digit0(fc))
+                {
+                    cout << "[Found 0, no update]\n";
+                    exect_root_found = true;
+                    break;
+                }
+                else if (fc < 0)
                 {
                     a = c;
                     cout << "a = c\n";
                 }
-                else if (f(c) > 0)
+                else //if (fc > 0)
                 {
                     b = c;
                     cout << "b = c\n";
-                }
-                else
-                {
-                    break;
                 }
             }
         else
@@ -89,23 +102,26 @@ int main()
                 c = (a + b) / 2;
                 cout << i++ << '\t';
                 show(a, b, c);
-                if (f(c) < 0)
+                double fc = f(c);
+                if (fc < 0)
                 {
                     a = c;
                     cout << "a = c\n";
                 }
-                else if (f(c) > 0)
+                else if (fc > 0)
                 {
                     b = c;
                     cout << "b = c\n";
                 }
-                if (fabs(f(c)-0) <= accuracy || f(c) == 0)
+                if (fabs(fc) <= accuracy || first6digit0(fc))
                 {
+                    if (first6digit0(fc))
+                        exect_root_found = true;
                     break;
                 }
             }
         }
-        if (f(c) == 0)
+        if (exect_root_found)
         {
             cout << "Root of the equation is: ";
         }
